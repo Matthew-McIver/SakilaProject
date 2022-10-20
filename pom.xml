@@ -13,9 +13,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>SakilaMicroservice</name>
 	<description>A service for Blockbuster customers.</description>
-	<properties>
-		<java.version>19</java.version>
-	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -80,6 +78,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<sonar.organization>matthew-mciver</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<java.version>19</java.version>
 	</properties>
 
 </project>
