@@ -7,6 +7,8 @@ public class FilmTest {
 
     Film testFilm = new Film();
 
+    Film newFilm = new Film("The big bang theory", "Unfunny nerds", 2007, "18");
+
     @Test
     public void testFilmId(){
         testFilm.setFilmId(1);
@@ -35,10 +37,5 @@ public class FilmTest {
     public void testFilmAgeRating(){
         testFilm.setAgeRating("18");
         Assertions.assertEquals("18", testFilm.getAgeRating(), "Setter and/or getter for age ratings is incorrect.");
-    }
-
-    @Test
-    public void testConstructorFilm(){
-        Film newTestFilm = new Film();
     }
 }

@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 public class ActorTest {
     Actor testActor = new Actor();
 
+    Actor newActor = new Actor("Gary", "Gary");
+
     @Test
     public void testActorId(){
         testActor.setActorId(1);
@@ -23,8 +25,4 @@ public class ActorTest {
         testActor.setLastName("Gracie");
         Assertions.assertEquals("Gracie", testActor.getLastName(), "Setter and/or getter for last names is incorrect.");
     }
-
-    @Test
-    public void testConstructorActor(){}
-        Actor newTestActor = new Actor();
 }
