@@ -19,6 +19,7 @@ public class SakilaMicroserviceApplication {
 	private FilmRepository filmRepository;
 	private RentalRepository rentalRepository;
 	private AddressRepository addressRepository;
+	private CustomerRepository customerRepository;
 
 	public SakilaMicroserviceApplication(ActorRepository myActorRepo, FilmRepository myFilmRepo, RentalRepository myRentalRepo, AddressRepository myAddressRepo) {
 		this.actorRepository = myActorRepo;
@@ -49,13 +50,14 @@ public class SakilaMicroserviceApplication {
 	}
 
 	@DeleteMapping("/deleteActor/{actorId}")
-	public Map<String, Boolean> deleteActor(@PathVariable(value = "actorId") int actorId) {
-		Actor actor = actorRepository.findById(actorId).orElseThrow(() -> new ResourceAccessException("Actor not found for this id :: " + actorId));
-
-		actorRepository.deleteById(actorId);
-		//Map<String, Boolean> response = new HashMap<>();
-		//response.put("deleted", Boolean.TRUE);
-		return null;
+	public Map<String, Boolean> deleteActor(@PathVariable(value = "actorId") int actorTimeId)
+			throws ResourceAccessException {
+		Actor actor = actorRepository.findById(actorTimeId)
+				.orElseThrow(() -> new ResourceAccessException("Actor not found for this id :: " + actorTimeId));
+		actorRepository.deleteById(actorTimeId);
+		Map<String, Boolean> response = new HashMap<>();
+		response.put("deleted", Boolean.TRUE);
+		return response;
 	}
 
 	@PostMapping("/putActor")
@@ -82,14 +84,15 @@ public class SakilaMicroserviceApplication {
 		return ResponseEntity.ok(updatedFilm);
 	}
 
-	@DeleteMapping("/deleteFilm/{filmId}")
-	public Map<String, Boolean> deleteFilm(@PathVariable(value = "filmId") int filmId) {
-		Film film = filmRepository.findById(filmId).orElseThrow(() -> new ResourceAccessException("Film not found for this id :: " + filmId));
-
-		filmRepository.deleteById(filmId);
-		//Map<String, Boolean> response = new HashMap<>();
-		//response.put("deleted", Boolean.TRUE);
-		return null;
+	@DeleteMapping("/deleteFilm/{actorId}")
+	public Map<String, Boolean> deleteFilm(@PathVariable(value = "filmId") int filmTimeId)
+			throws ResourceAccessException {
+		Film film = filmRepository.findById(filmTimeId)
+				.orElseThrow(() -> new ResourceAccessException("Film not found for this id :: " + filmTimeId));
+		actorRepository.deleteById(filmTimeId);
+		Map<String, Boolean> response = new HashMap<>();
+		response.put("deleted", Boolean.TRUE);
+		return response;
 	}
 
 	@PostMapping("/putFilm")
@@ -114,13 +117,14 @@ public class SakilaMicroserviceApplication {
 	}
 
 	@DeleteMapping("/deleteRental/{rentalId}")
-	public Map<String, Boolean> deleteRental(@PathVariable(value = "rentalId") int rentalId) {
-		Rental rental = rentalRepository.findById(rentalId).orElseThrow(() -> new ResourceAccessException("Rental not found for this id :: " + rentalId));
-
-		rentalRepository.deleteById(rentalId);
-		//Map<String, Boolean> response = new HashMap<>();
-		//response.put("deleted", Boolean.TRUE);
-		return null;
+	public Map<String, Boolean> deleteRental(@PathVariable(value = "rentalId") int rentalTimeId)
+			throws ResourceAccessException {
+		Rental rental = rentalRepository.findById(rentalTimeId)
+				.orElseThrow(() -> new ResourceAccessException("Rental not found for this id :: " + rentalTimeId));
+		rentalRepository.deleteById(rentalTimeId);
+		Map<String, Boolean> response = new HashMap<>();
+		response.put("deleted", Boolean.TRUE);
+		return response;
 	}
 
 	@PostMapping("/putRental")
@@ -147,17 +151,48 @@ public class SakilaMicroserviceApplication {
 	}
 
 	@DeleteMapping("/deleteAddress/{addressId}")
-	public Map<String, Boolean> deleteAddress(@PathVariable(value = "addressId") int addressId) {
-		Address address = addressRepository.findById(addressId).orElseThrow(() -> new ResourceAccessException("Address not found for this id :: " + addressId));
-
-		addressRepository.deleteById(addressId);
-		//Map<String, Boolean> response = new HashMap<>();
-		//response.put("deleted", Boolean.TRUE);
-		return null;
+	public Map<String, Boolean> deleteAddress(@PathVariable(value = "addressId") int addressTimeId)
+			throws ResourceAccessException {
+		Address address = addressRepository.findById(addressTimeId)
+				.orElseThrow(() -> new ResourceAccessException("Address not found for this id :: " + addressTimeId));
+		addressRepository.deleteById(addressTimeId);
+		Map<String, Boolean> response = new HashMap<>();
+		response.put("deleted", Boolean.TRUE);
+		return response;
 	}
 
 	@PostMapping("/putAddress")
-	public Address createAddress(@RequestBody Address address) {
-		return addressRepository.save(address);
+	public Address createAddress(@RequestBody Address address) { return addressRepository.save(address); }
+
+	//CUSTOMER
+	@GetMapping("/allCustomers")
+	public @ResponseBody
+	Iterable<Customer> getAllCustomers() {
+		return customerRepository.findAll();
 	}
+
+	@PutMapping("/putCustomer/{id}")
+	public ResponseEntity<Customer> updateCustomer(@PathVariable(value = "id") Integer customerId, @RequestBody Customer customerDetails) {
+		Customer customer = customerRepository.findById(customerId).orElseThrow(() -> new ResourceAccessException("Customer not found for this id :: " + customerId));
+
+		customer.setFirstName(customerDetails.getFirstName());
+		customer.setLastName(customerDetails.getLastName());
+		customer.setEmail(customerDetails.getEmail());
+		final Customer updatedCustomer = customerRepository.save(customer);
+		return ResponseEntity.ok(updatedCustomer);
+	}
+
+	@DeleteMapping("/deleteCustomer/{customerId}")
+	public Map<String, Boolean> deleteCustomer(@PathVariable(value = "customerId") int customerTimeId)
+			throws ResourceAccessException {
+		Customer customer = customerRepository.findById(customerTimeId)
+				.orElseThrow(() -> new ResourceAccessException("Customer not found for this id :: " + customerTimeId));
+		customerRepository.deleteById(customerTimeId);
+		Map<String, Boolean> response = new HashMap<>();
+		response.put("deleted", Boolean.TRUE);
+		return response;
+	}
+
+	@PostMapping("/putCustomer")
+	public Customer createCustomer(@RequestBody Customer customer) { return customerRepository.save(customer); }
 }

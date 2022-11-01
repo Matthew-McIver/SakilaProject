@@ -57,6 +57,12 @@
 			<version>7.8.1</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-spring</artifactId>
+			<version>7.8.1</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
