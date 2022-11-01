@@ -30,8 +30,6 @@ public class Actor {
     }
 
     //Methods
-
-
     public int getActorId() {
         return actorId;
     }
@@ -52,5 +50,4 @@ public class Actor {
     public void setLastName(String myLastName) {
         lastName = myLastName;
     }
-
 }
