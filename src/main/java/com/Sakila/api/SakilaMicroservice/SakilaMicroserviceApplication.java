@@ -48,17 +48,17 @@ public class SakilaMicroserviceApplication {
 		return ResponseEntity.ok(updatedActor);
 	}
 
-	@DeleteMapping("/deleteActors/{id}")
+	@DeleteMapping("/deleteActor/{actorId}")
 	public Map<String, Boolean> deleteActor(@PathVariable(value = "actorId") int actorId) {
 		Actor actor = actorRepository.findById(actorId).orElseThrow(() -> new ResourceAccessException("Actor not found for this id :: " + actorId));
 
-		actorRepository.delete(actor);
-		Map<String, Boolean> response = new HashMap<>();
-		response.put("deleted", Boolean.TRUE);
-		return response;
+		actorRepository.deleteById(actorId);
+		//Map<String, Boolean> response = new HashMap<>();
+		//response.put("deleted", Boolean.TRUE);
+		return null;
 	}
 
-	@PostMapping("/allActors")
+	@PostMapping("/putActor")
 	public Actor createActor(@RequestBody Actor actor) {
 		return actorRepository.save(actor);
 	}
@@ -82,8 +82,22 @@ public class SakilaMicroserviceApplication {
 		return ResponseEntity.ok(updatedFilm);
 	}
 
-	//RENTAL
+	@DeleteMapping("/deleteFilm/{filmId}")
+	public Map<String, Boolean> deleteFilm(@PathVariable(value = "filmId") int filmId) {
+		Film film = filmRepository.findById(filmId).orElseThrow(() -> new ResourceAccessException("Film not found for this id :: " + filmId));
 
+		filmRepository.deleteById(filmId);
+		//Map<String, Boolean> response = new HashMap<>();
+		//response.put("deleted", Boolean.TRUE);
+		return null;
+	}
+
+	@PostMapping("/putFilm")
+	public Film createFilm(@RequestBody Film film) {
+		return filmRepository.save(film);
+	}
+
+	//RENTAL
 	@GetMapping("/allRentals")
 	public @ResponseBody
 	Iterable<Rental> getAllRentals() {
@@ -99,8 +113,22 @@ public class SakilaMicroserviceApplication {
 		return ResponseEntity.ok(updatedRental);
 	}
 
-	//ADDRESS
+	@DeleteMapping("/deleteRental/{rentalId}")
+	public Map<String, Boolean> deleteRental(@PathVariable(value = "rentalId") int rentalId) {
+		Rental rental = rentalRepository.findById(rentalId).orElseThrow(() -> new ResourceAccessException("Rental not found for this id :: " + rentalId));
 
+		rentalRepository.deleteById(rentalId);
+		//Map<String, Boolean> response = new HashMap<>();
+		//response.put("deleted", Boolean.TRUE);
+		return null;
+	}
+
+	@PostMapping("/putRental")
+	public Rental createRental(@RequestBody Rental rental) {
+		return rentalRepository.save(rental);
+	}
+
+	//ADDRESS
 	@GetMapping("/allAddresses")
 	public @ResponseBody
 	Iterable<Address> getAllAddresses() {
@@ -116,5 +144,20 @@ public class SakilaMicroserviceApplication {
 		address.setPostalCode(addressDetails.getPostalCode());
 		final Address updatedAddress = addressRepository.save(address);
 		return ResponseEntity.ok(updatedAddress);
+	}
+
+	@DeleteMapping("/deleteAddress/{addressId}")
+	public Map<String, Boolean> deleteAddress(@PathVariable(value = "addressId") int addressId) {
+		Address address = addressRepository.findById(addressId).orElseThrow(() -> new ResourceAccessException("Address not found for this id :: " + addressId));
+
+		addressRepository.deleteById(addressId);
+		//Map<String, Boolean> response = new HashMap<>();
+		//response.put("deleted", Boolean.TRUE);
+		return null;
+	}
+
+	@PostMapping("/putAddress")
+	public Address createAddress(@RequestBody Address address) {
+		return addressRepository.save(address);
 	}
 }
