@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 public class CustomerTest {
     Customer testCustomer = new Customer();
 
-    Customer newCustomer = new Customer("Sofia", "Katsou", "SofiaKatsou01@gmail.com");
+    Customer newCustomer = new Customer("Matthew", "McIver", "matthewpetermciver@gmail.com");
 
     @Test
     public void testCustomerId(){
@@ -16,19 +16,19 @@ public class CustomerTest {
 
     @Test
     public void setTestCustomerFirstName(){
-        testCustomer.setFirstName("John");
-        Assertions.assertEquals("John", testCustomer.getFirstName(), "Setter and/or getter for customer first names is incorrect.");
+        testCustomer.setFirstName("Matthew");
+        Assertions.assertEquals("Matthew", testCustomer.getFirstName(), "Setter and/or getter for customer first names is incorrect.");
     }
 
     @Test
     public void setTestCustomerLastName(){
-        testCustomer.setLastName("Smith");
-        Assertions.assertEquals("Smith", testCustomer.getLastName(), "Setter and/or getter for customer last names is incorrect.");
+        testCustomer.setLastName("McIver");
+        Assertions.assertEquals("McIver", testCustomer.getLastName(), "Setter and/or getter for customer last names is incorrect.");
     }
 
     @Test
     public void setTestCustomerEmail(){
-        testCustomer.setEmail("JohnSmith@hotmail.com");
-        Assertions.assertEquals("JohnSmith@hotmail.com", testCustomer.getEmail(), "Setter and/or getter for customer emails is incorrect.");
+        testCustomer.setEmail("matthewpetermciver@gmail.com");
+        Assertions.assertEquals("matthewpetermciver@gmail.com", testCustomer.getEmail(), "Setter and/or getter for customer emails is incorrect.");
     }
 }

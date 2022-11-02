@@ -7,7 +7,7 @@ public class FilmTest {
 
     Film testFilm = new Film();
 
-    Film newFilm = new Film("The big bang theory", "Unfunny nerds", 2007, "18");
+    Film newFilm = new Film("The Godfather", "A mafia film", 1972, "18");
 
     @Test
     public void testFilmId(){
@@ -17,20 +17,20 @@ public class FilmTest {
 
     @Test
     public void testFilmTitle(){
-        testFilm.setFilmTitle("Transformers 6: Why do we keep making these");
-        Assertions.assertEquals("Transformers 6: Why do we keep making these", testFilm.getFilmTitle(), "Setter and/or getter for film titles is incorrect.");
+        testFilm.setFilmTitle("The Godfather");
+        Assertions.assertEquals("The Godfather", testFilm.getFilmTitle(), "Setter and/or getter for film titles is incorrect.");
     }
 
     @Test
     public void testFilmDescription(){
-        testFilm.setFilmDescription("It is bad");
-        Assertions.assertEquals("It is bad", testFilm.getFilmDescription(), "Setter and/or getter for film descriptions is incorrect.");
+        testFilm.setFilmDescription("A mafia film");
+        Assertions.assertEquals("A mafia film", testFilm.getFilmDescription(), "Setter and/or getter for film descriptions is incorrect.");
     }
 
     @Test
     public void testFilmReleaseYear(){
-        testFilm.setReleaseYear(2001);
-        Assertions.assertEquals(2001, testFilm.getReleaseYear(), "Setter and/or getter for release years is incorrect.");
+        testFilm.setReleaseYear(1972);
+        Assertions.assertEquals(1972, testFilm.getReleaseYear(), "Setter and/or getter for release years is incorrect.");
     }
 
     @Test

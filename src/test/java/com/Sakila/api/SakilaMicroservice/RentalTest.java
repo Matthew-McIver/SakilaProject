@@ -7,7 +7,7 @@ public class RentalTest {
 
     Rental testRental = new Rental();
 
-    Rental newRental = new Rental(2005);
+    Rental newRental = new Rental(2022);
 
     @Test
     public void testRentalId(){
@@ -17,7 +17,7 @@ public class RentalTest {
 
     @Test
     public void testRentalDate(){
-        testRental.setRentalDate(2001);
-        Assertions.assertEquals(2001, testRental.getRentalDate(), "Setter and/or getter for rental dates is incorrect.");
+        testRental.setRentalDate(2022);
+        Assertions.assertEquals(2022, testRental.getRentalDate(), "Setter and/or getter for rental dates is incorrect.");
     }
 }

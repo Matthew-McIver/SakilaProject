@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 public class AddressTest {
     Address testAddress = new Address();
 
-    Address newAddress = new Address("123 Cool guy lane", "Bikini Bottom", 12345);
+    Address newAddress = new Address("123 1st Street", "Liverpool", 12345);
 
     @Test
     public void testAddressId(){
@@ -17,14 +17,14 @@ public class AddressTest {
 
     @Test
     public void testAddressTitle(){
-        testAddress.setAddressTitle("123 Cool guy lane");
-        Assertions.assertEquals("123 Cool guy lane", testAddress.getAddressTitle(), "Setter and/or getter for Address titles is incorrect.");
+        testAddress.setAddressTitle("123 1st Street");
+        Assertions.assertEquals("123 1st Street", testAddress.getAddressTitle(), "Setter and/or getter for Address titles is incorrect.");
     }
 
     @Test
     public void testDistrictTitle(){
-        testAddress.setDistrictTitle("Bikini Bottom");
-        Assertions.assertEquals("Bikini Bottom", testAddress.getDistrictTitle(), "Setter and/or getter for district titles is incorrect.");
+        testAddress.setDistrictTitle("Liverpool");
+        Assertions.assertEquals("Liverpool", testAddress.getDistrictTitle(), "Setter and/or getter for district titles is incorrect.");
     }
 
     @Test

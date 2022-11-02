@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 public class ActorTest {
     Actor testActor = new Actor();
 
-    Actor newActor = new Actor("Gary", "Gary");
+    Actor newActor = new Actor("Matthew", "McIver");
 
     @Test
     public void testActorId(){
@@ -16,13 +16,13 @@ public class ActorTest {
 
     @Test
     public void testActorFirstName(){
-        testActor.setFirstName("Bazza");
-        Assertions.assertEquals("Bazza", testActor.getFirstName(), "Setter and/or getter for first names is incorrect.");
+        testActor.setFirstName("Matthew");
+        Assertions.assertEquals("Matthew", testActor.getFirstName(), "Setter and/or getter for first names is incorrect.");
     }
 
     @Test
     public void testActorLastName(){
-        testActor.setLastName("Gracie");
-        Assertions.assertEquals("Gracie", testActor.getLastName(), "Setter and/or getter for last names is incorrect.");
+        testActor.setLastName("McIver");
+        Assertions.assertEquals("McIver", testActor.getLastName(), "Setter and/or getter for last names is incorrect.");
     }
 }
