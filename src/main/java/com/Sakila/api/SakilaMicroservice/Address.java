@@ -1,8 +1,6 @@
 package com.Sakila.api.SakilaMicroservice;
-
 import javax.persistence.*;
 import java.util.Set;
-
 @Entity
 @Table(name = "address")
 public class Address {
@@ -25,17 +23,12 @@ public class Address {
     int postalCode;
 
     //Constructor
-    public Address(String myAddress, String myDistrict, int myPostalCode)
-    {
+    public Address(String myAddress, String myDistrict, int myPostalCode) {
         this.addressTitle = myAddress;
         this.districtTitle = myDistrict;
-        this.postalCode = myPostalCode;
-    }
+        this.postalCode = myPostalCode; }
 
-    public Address()
-    {
-
-    }
+    public Address() {}
 
     //Methods
     public int getAddressId() { return addressId; }
@@ -48,5 +41,4 @@ public class Address {
     public void setDistrictTitle(String myDistrictTitle) { districtTitle = myDistrictTitle; }
 
     public int getPostalCode() { return postalCode; }
-    public void setPostalCode(int myPostCode) { postalCode = myPostCode; }
-}
+    public void setPostalCode(int myPostCode) { postalCode = myPostCode; } }

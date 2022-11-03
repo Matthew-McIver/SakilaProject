@@ -1,8 +1,6 @@
 package com.Sakila.api.SakilaMicroservice;
-
 import javax.persistence.*;
 import java.util.Set;
-
 @Entity
 @Table(name = "customer")
 public class Customer {
@@ -30,17 +28,12 @@ public class Customer {
     String email;
 
     //Constructor
-    public Customer(String myFirstName, String myLastName, String myEmail)
-    {
+    public Customer(String myFirstName, String myLastName, String myEmail) {
         this.firstName = myFirstName;
         this.lastName = myLastName;
-        this.email = myEmail;
-    }
+        this.email = myEmail; }
 
-    public Customer()
-    {
-
-    }
+    public Customer() {}
 
     //Methods
     public int getCustomerId() { return customerId; }
@@ -53,5 +46,4 @@ public class Customer {
     public void setLastName(String myLastName) { lastName = myLastName; }
 
     public String getEmail() { return email; }
-    public void setEmail(String myEmail) { email = myEmail; }
-}
+    public void setEmail(String myEmail) { email = myEmail; } }

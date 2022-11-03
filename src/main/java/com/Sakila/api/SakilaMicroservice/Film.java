@@ -1,8 +1,7 @@
 package com.Sakila.api.SakilaMicroservice;
-
 import javax.persistence.*;
 import java.util.Collection;
-
+import java.util.Set;
 @Entity
 @Table(name = "film")
 public class Film {
@@ -18,10 +17,8 @@ public class Film {
             inverseJoinColumns = @JoinColumn(name = "actor_id"))
     Collection<Film> actors;
 
-    @ManyToOne
-    @MapsId("inventoryId")
-    @JoinColumn(name = "inventory_id")
-    Inventory inventory;
+    @OneToMany(mappedBy = "film")
+    Set<Inventory> inventory;
 
     @Column(name = "title")
     String filmTitle;
@@ -36,21 +33,15 @@ public class Film {
     String ageRating;
 
     //Constructor
-    public Film(String myFilmTitle, String myFilmDescription, int myReleaseYear, String myAgeRating)
-    {
+    public Film(String myFilmTitle, String myFilmDescription, int myReleaseYear, String myAgeRating) {
         this.filmTitle = myFilmTitle;
         this.filmDescription = myFilmDescription;
         this.releaseYear = myReleaseYear;
-        this.ageRating = myAgeRating;
-    }
+        this.ageRating = myAgeRating; }
 
-    public Film()
-    {
-
-    }
+    public Film() {}
 
     //Methods
-
     public int getFilmId() {
         return filmId;
     }
@@ -78,6 +69,4 @@ public class Film {
     public void setReleaseYear(int myReleaseYear) { this.releaseYear = myReleaseYear;}
 
     public String getAgeRating() { return ageRating;}
-    public void setAgeRating(String ageRating) {this.ageRating = ageRating;}
-}
-
+    public void setAgeRating(String ageRating) {this.ageRating = ageRating;} }

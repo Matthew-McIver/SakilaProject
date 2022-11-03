@@ -1,8 +1,6 @@
 package com.Sakila.api.SakilaMicroservice;
-
 import javax.persistence.*;
 import java.util.Collection;
-
 @Entity
 @Table(name = "actor")
 public class Actor {
@@ -25,16 +23,11 @@ public class Actor {
     String lastName;
 
     //Constructor
-    public Actor(String myFirstName, String myLastName)
-    {
+    public Actor(String myFirstName, String myLastName) {
         this.firstName = myFirstName;
-        this.lastName = myLastName;
-    }
+        this.lastName = myLastName; }
 
-    public Actor()
-    {
-
-    }
+    public Actor() {}
 
     //Methods
     public int getActorId() {
@@ -56,5 +49,4 @@ public class Actor {
     }
     public void setLastName(String myLastName) {
         lastName = myLastName;
-    }
-}
+    } }

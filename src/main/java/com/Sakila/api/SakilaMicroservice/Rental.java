@@ -1,8 +1,6 @@
 package com.Sakila.api.SakilaMicroservice;
-
 import javax.persistence.*;
 import java.util.Set;
-
 @Entity
 @Table(name = "rental")
 public class Rental {
@@ -17,8 +15,9 @@ public class Rental {
     @JoinColumn(name = "customer_id")
     Customer customer;
 
-    @OneToMany(mappedBy = "rental")
-    Set<Inventory> inventory;
+    @ManyToOne
+    @JoinColumn(name = "inventory_id")
+    Inventory inventory;
 
 
     @Column(name = "rental_date")
@@ -30,19 +29,13 @@ public class Rental {
         this.rentalDate = myRentalDate;
     }
 
-    public Rental()
-    {
-
-    }
+    public Rental() {}
 
     //Methods
-
     public int getRentalId() { return rentalId; }
 
     public void setRentalId(int myId) { rentalId = myId; }
 
     public int getRentalDate() { return rentalDate; }
 
-    public void setRentalDate(int myRentalDate) { rentalDate = myRentalDate; }
-
-}
+    public void setRentalDate(int myRentalDate) { rentalDate = myRentalDate; } }
