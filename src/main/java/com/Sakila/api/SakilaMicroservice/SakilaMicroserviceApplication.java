@@ -18,13 +18,15 @@ public class SakilaMicroserviceApplication {
 	private AddressRepository addressRepository;
 	private CustomerRepository customerRepository;
 	private InventoryRepository inventoryRepository;
-	public SakilaMicroserviceApplication(ActorRepository myActorRepo, FilmRepository myFilmRepo, RentalRepository myRentalRepo, AddressRepository myAddressRepo, CustomerRepository myCustomerRepo, InventoryRepository myInventoryRepo) {
+	private PaymentRepository paymentRepository;
+	public SakilaMicroserviceApplication(ActorRepository myActorRepo, FilmRepository myFilmRepo, RentalRepository myRentalRepo, AddressRepository myAddressRepo, CustomerRepository myCustomerRepo, InventoryRepository myInventoryRepo, PaymentRepository myPaymentRepo) {
 		this.actorRepository = myActorRepo;
 		this.filmRepository = myFilmRepo;
 		this.rentalRepository = myRentalRepo;
 		this.addressRepository = myAddressRepo;
 		this.customerRepository = myCustomerRepo;
-		this.inventoryRepository = myInventoryRepo; }
+		this.inventoryRepository = myInventoryRepo;
+		this.paymentRepository = myPaymentRepo; }
 	public static void main(String[] args) {
 		SpringApplication.run(SakilaMicroserviceApplication.class, args);
 	}
@@ -182,4 +184,25 @@ public class SakilaMicroserviceApplication {
 		response.put("deleted", Boolean.TRUE);
 		return response; }
 	@PostMapping("/putInventory")
-	public Inventory createInventory(@RequestBody Inventory inventory) { return inventoryRepository.save(inventory); } }
+	public Inventory createInventory(@RequestBody Inventory inventory) { return inventoryRepository.save(inventory); }
+
+	//PAYMENT
+	@GetMapping("/allPayment")
+	public @ResponseBody
+	Iterable<Payment> getAllPayment() { return paymentRepository.findAll(); }
+	@PutMapping("/putPayment/{id}")
+	public ResponseEntity<Payment> updatePayment(@PathVariable(value = "id") Integer paymentId, @RequestBody Payment paymentDetails) {
+		Payment payment = paymentRepository.findById(paymentId).orElseThrow(() -> new ResourceAccessException("Payment not found for this id :: " + paymentId));
+		final Payment updatedPayment = paymentRepository.save(payment);
+		return ResponseEntity.ok(updatedPayment); }
+	@DeleteMapping("/deletePayment/{paymentId}")
+	public Map<String, Boolean> deletePayment(@PathVariable(value = "paymentId") int paymentTimeId)
+			throws ResourceAccessException {
+		Payment payment = paymentRepository.findById(paymentTimeId)
+				.orElseThrow(() -> new ResourceAccessException("Payment not found for this id :: " + paymentTimeId));
+		paymentRepository.deleteById(paymentTimeId);
+		Map<String, Boolean> response = new HashMap<>();
+		response.put("deleted", Boolean.TRUE);
+		return response; }
+	@PostMapping("/putPayment")
+	public Payment createPayment(@RequestBody Payment payment) { return paymentRepository.save(payment); } }

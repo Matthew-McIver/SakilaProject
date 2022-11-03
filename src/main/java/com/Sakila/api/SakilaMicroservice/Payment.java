@@ -9,6 +9,9 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int paymentId;
 
+    @OneToOne(mappedBy = "payment")
+    private Rental rental;
+
     @Column(name = "amount")
     double amount;
 

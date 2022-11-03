@@ -19,6 +19,9 @@ public class Rental {
     @JoinColumn(name = "inventory_id")
     Inventory inventory;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "payment_id", referencedColumnName = "paymentId")
+    private Payment payment;
 
     @Column(name = "rental_date")
     int rentalDate;
@@ -33,9 +36,7 @@ public class Rental {
 
     //Methods
     public int getRentalId() { return rentalId; }
-
     public void setRentalId(int myId) { rentalId = myId; }
 
     public int getRentalDate() { return rentalDate; }
-
     public void setRentalDate(int myRentalDate) { rentalDate = myRentalDate; } }
