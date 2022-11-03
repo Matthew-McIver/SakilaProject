@@ -18,7 +18,7 @@ public class SakilaMicroserviceApplication {
 	private AddressRepository addressRepository;
 	private CustomerRepository customerRepository;
 	private InventoryRepository inventoryRepository;
-
+	@Autowired
 	private SakilaMicroserviceApplication sakilaMicroserviceApplication = new SakilaMicroserviceApplication(actorRepository, filmRepository, rentalRepository, addressRepository, customerRepository,inventoryRepository);
 	public SakilaMicroserviceApplication(ActorRepository myActorRepo, FilmRepository myFilmRepo, RentalRepository myRentalRepo, AddressRepository myAddressRepo, CustomerRepository myCustomerRepo, InventoryRepository myInventoryRepo) {
 		this.actorRepository = myActorRepo;
