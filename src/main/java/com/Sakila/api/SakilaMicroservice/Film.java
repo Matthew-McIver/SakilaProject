@@ -17,8 +17,10 @@ public class Film {
             inverseJoinColumns = @JoinColumn(name = "actor_id"))
     Collection<Film> actors;
 
-    @OneToMany(mappedBy = "film")
-    Set<Inventory> inventory;
+    @ManyToOne
+    @MapsId("inventoryId")
+    @JoinColumn(name = "inventory_id")
+    private Inventory inventory;
 
     @Column(name = "title")
     String filmTitle;

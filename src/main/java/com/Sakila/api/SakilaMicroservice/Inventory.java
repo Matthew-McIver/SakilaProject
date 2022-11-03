@@ -13,10 +13,8 @@ public class Inventory {
     @OneToMany(mappedBy = "inventory")
     Set<Rental> rental;
 
-    @ManyToOne
-    @MapsId("filmId")
-    @JoinColumn(name = "film_id")
-    Film films;
+    @OneToMany(mappedBy = "inventory")
+    private Set<Film> films;
 
     //Constructor
     public Inventory() {}
