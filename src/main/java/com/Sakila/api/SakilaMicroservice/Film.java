@@ -1,6 +1,7 @@
 package com.Sakila.api.SakilaMicroservice;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "film")
@@ -10,6 +11,17 @@ public class Film {
     @Column(name = "film_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int filmId;
+
+    @ManyToMany
+    @JoinTable(name = "film_actor",
+            joinColumns = @JoinColumn(name = "film_id"),
+            inverseJoinColumns = @JoinColumn(name = "actor_id"))
+    Collection<Film> actors;
+
+    @ManyToOne
+    @MapsId("inventoryId")
+    @JoinColumn(name = "inventory_id")
+    Inventory inventory;
 
     @Column(name = "title")
     String filmTitle;

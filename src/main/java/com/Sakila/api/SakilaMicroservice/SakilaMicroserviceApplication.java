@@ -20,12 +20,15 @@ public class SakilaMicroserviceApplication {
 	private RentalRepository rentalRepository;
 	private AddressRepository addressRepository;
 	private CustomerRepository customerRepository;
+	private InventoryRepository inventoryRepository;
 
-	public SakilaMicroserviceApplication(ActorRepository myActorRepo, FilmRepository myFilmRepo, RentalRepository myRentalRepo, AddressRepository myAddressRepo) {
+	public SakilaMicroserviceApplication(ActorRepository myActorRepo, FilmRepository myFilmRepo, RentalRepository myRentalRepo, AddressRepository myAddressRepo, CustomerRepository myCustomerRepo, InventoryRepository myInventoryRepo) {
 		this.actorRepository = myActorRepo;
 		this.filmRepository = myFilmRepo;
 		this.rentalRepository = myRentalRepo;
 		this.addressRepository = myAddressRepo;
+		this.customerRepository = myCustomerRepo;
+		this.inventoryRepository = myInventoryRepo;
 	}
 
 	public static void main(String[] args) {
@@ -70,6 +73,12 @@ public class SakilaMicroserviceApplication {
 	public @ResponseBody
 	Iterable<Film> getAllFilms() {
 		return filmRepository.findAll();
+	}
+
+	@GetMapping("/randomFilms")
+	public List<Film> getRandomFilms()
+	{
+		return filmRepository.getRandomFilms();
 	}
 
 	@PutMapping("/putFilms/{id}")
@@ -171,6 +180,16 @@ public class SakilaMicroserviceApplication {
 		return customerRepository.findAll();
 	}
 
+	@GetMapping("/CustomersById/{id}")
+	public Optional<Customer> getCustomerById(@PathVariable(value = "id") int customerId) {
+		return customerRepository.findById(customerId);
+	}
+
+	@GetMapping("CustomersByFirstName/{firstName}")
+	public Optional<Customer> getCustomerByFirstName(@PathVariable(value = "firstName") String firstName) {
+		return customerRepository.getCustomerByFirstName(firstName);
+	}
+
 	@PutMapping("/putCustomer/{id}")
 	public ResponseEntity<Customer> updateCustomer(@PathVariable(value = "id") Integer customerId, @RequestBody Customer customerDetails) {
 		Customer customer = customerRepository.findById(customerId).orElseThrow(() -> new ResourceAccessException("Customer not found for this id :: " + customerId));
@@ -195,4 +214,33 @@ public class SakilaMicroserviceApplication {
 
 	@PostMapping("/putCustomer")
 	public Customer createCustomer(@RequestBody Customer customer) { return customerRepository.save(customer); }
+
+	//INVENTORY
+	@GetMapping("/allInventory")
+	public @ResponseBody
+	Iterable<Inventory> getAllInventory() {
+		return inventoryRepository.findAll();
+	}
+
+	@PutMapping("/putInventory/{id}")
+	public ResponseEntity<Inventory> updateInventory(@PathVariable(value = "id") Integer inventoryId, @RequestBody Inventory inventoryDetails) {
+		Inventory inventory = inventoryRepository.findById(inventoryId).orElseThrow(() -> new ResourceAccessException("Inventory not found for this id :: " + inventoryId));
+
+		final Inventory updatedInventory = inventoryRepository.save(inventory);
+		return ResponseEntity.ok(updatedInventory);
+	}
+
+	@DeleteMapping("/deleteInventory/{inventoryId}")
+	public Map<String, Boolean> deleteInventory(@PathVariable(value = "inventoryId") int inventoryTimeId)
+			throws ResourceAccessException {
+		Inventory inventory = inventoryRepository.findById(inventoryTimeId)
+				.orElseThrow(() -> new ResourceAccessException("Inventory not found for this id :: " + inventoryTimeId));
+		inventoryRepository.deleteById(inventoryTimeId);
+		Map<String, Boolean> response = new HashMap<>();
+		response.put("deleted", Boolean.TRUE);
+		return response;
+	}
+
+	@PostMapping("/putInventory")
+	public Inventory createInventory(@RequestBody Inventory inventory) { return inventoryRepository.save(inventory); }
 }

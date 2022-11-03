@@ -5,6 +5,9 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class SearchCustomerDataTestStepDef {
+
+    CustomerRepository newCustomerRepo;
+
     @Given("a user wants to know their customer data at Blockbuster.")
     public void a_user_wants_to_know_their_most_recent_movie_purchase() {
         // Write code here that turns the phrase above into concrete actions

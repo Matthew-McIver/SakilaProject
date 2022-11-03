@@ -1,6 +1,7 @@
 package com.Sakila.api.SakilaMicroservice;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "customer")
@@ -10,6 +11,14 @@ public class Customer {
     @Column(name = "customer_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int customerId;
+
+    @ManyToOne
+    @MapsId("addressId")
+    @JoinColumn(name = "address_id")
+    Address address;
+
+    @OneToMany(mappedBy = "customer")
+    Set<Rental> rental;
 
     @Column(name = "first_name")
     String firstName;
