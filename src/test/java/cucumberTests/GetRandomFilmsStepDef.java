@@ -34,7 +34,7 @@ public class GetRandomFilmsStepDef {
     }
     @When("a user accesses their most recently rented films")
     public void a_user_accesses_their_most_recently_rented_films() {
-        randomFilms = sakilaMicroserviceApplication.getRandomFilms(noOfFilms);
+        randomFilms = filmRepository.getRandomFilms(noOfFilms);
     }
     @Then("random films are listed with their title, description, release year, and age rating")
     public void random_films_are_listed_with_their_title_description_release_year_and_age_rating() {

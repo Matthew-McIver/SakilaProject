@@ -1,12 +1,10 @@
 package cucumberTests;
-
 import com.Sakila.api.SakilaMicroservice.*;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
-
 public class SearchFilmByNameStepDef {
     String filmTitle = "";
     Film filmObject = new Film();
@@ -36,7 +34,4 @@ public class SearchFilmByNameStepDef {
     }
     @Then("the database will return that film")
     public void the_database_will_return_that_film() {
-        Assertions.assertEquals("PSYCHO SHRUNK", filmObject.getFilmTitle(), "Film title is incorrect.");
-    }
-
-}
+        Assertions.assertEquals("PSYCHO SHRUNK", filmObject.getFilmTitle(), "Film title is incorrect.");} }

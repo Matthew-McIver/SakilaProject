@@ -65,11 +65,9 @@ public class SakilaMicroserviceApplication {
 		return filmRepository.findAll();
 	}
 	@GetMapping("/randomFilms{number}")
-	public List<Film> getRandomFilms(@PathVariable(value = "number") int number)
-	{
-		return filmRepository.getRandomFilms(number);
-	}
-
+	public List<Film> getRandomFilms(@PathVariable(value = "number") int number) { return filmRepository.getRandomFilms(number); }
+	@GetMapping("/filmByName/{id}")
+	public Film getFilmByName(@PathVariable(value = "id") String filmName) { return filmRepository.getFilmByName(filmName); }
 	@PutMapping("/putFilms/{id}")
 	public ResponseEntity<Film> updateFilm(@PathVariable(value = "id") Integer filmId, @RequestBody Film filmDetails) {
 		Film film = filmRepository.findById(filmId).orElseThrow(() -> new ResourceAccessException("Film not found for this id :: " + filmId));

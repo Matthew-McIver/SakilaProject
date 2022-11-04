@@ -13,8 +13,11 @@ public class Inventory {
     @OneToMany(mappedBy = "inventory")
     Set<Rental> rental;
 
-    @OneToMany(mappedBy = "inventory")
-    private Set<Film> films;
+//    @OneToMany(mappedBy = "inventory")
+//    private Set<Film> films;
+
+    @OneToOne(mappedBy = "inventory")
+    private Film film;
 
     //Constructor
     public Inventory() {}

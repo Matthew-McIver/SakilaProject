@@ -17,9 +17,13 @@ public class Film {
             inverseJoinColumns = @JoinColumn(name = "actor_id"))
     Collection<Film> actors;
 
-    @ManyToOne
-    @MapsId("inventoryId")
-    @JoinColumn(name = "inventory_id")
+//    @ManyToOne
+//    @MapsId("inventoryId")
+//    @JoinColumn(name = "inventory_id")
+//    private Inventory inventory;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "inventory_id", referencedColumnName = "inventoryId")
     private Inventory inventory;
 
     @Column(name = "title")
