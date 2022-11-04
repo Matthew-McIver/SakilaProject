@@ -11,7 +11,7 @@ import java.util.*;
 @SpringBootApplication
 @RestController
 @RequestMapping("/BootUp")
-@CrossOrigin
+@CrossOrigin("https://localhost:8080")
 public class SakilaMicroserviceApplication {
 	@Autowired
 	private ActorRepository actorRepository;
