@@ -1,4 +1,4 @@
-Feature: This is a searcher for data on an individuals movie purchase history.
+Feature: This is a searcher for data on an individual customer data.
   As the user, I would be able to search up my data as a customer.
 
   Scenario: Successfully retrieve specific customer data with the first and last name.

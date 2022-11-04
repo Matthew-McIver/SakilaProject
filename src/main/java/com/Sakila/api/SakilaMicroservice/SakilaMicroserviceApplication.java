@@ -64,11 +64,12 @@ public class SakilaMicroserviceApplication {
 	Iterable<Film> getAllFilms() {
 		return filmRepository.findAll();
 	}
-	@GetMapping("/randomFilms")
-	public List<Film> getRandomFilms()
+	@GetMapping("/randomFilms{number}")
+	public List<Film> getRandomFilms(@PathVariable(value = "number") int number)
 	{
-		return filmRepository.getRandomFilms();
+		return filmRepository.getRandomFilms(number);
 	}
+
 	@PutMapping("/putFilms/{id}")
 	public ResponseEntity<Film> updateFilm(@PathVariable(value = "id") Integer filmId, @RequestBody Film filmDetails) {
 		Film film = filmRepository.findById(filmId).orElseThrow(() -> new ResourceAccessException("Film not found for this id :: " + filmId));
@@ -143,8 +144,8 @@ public class SakilaMicroserviceApplication {
 	Iterable<Customer> getAllCustomers() { return customerRepository.findAll(); }
 	@GetMapping("/CustomersById/{id}")
 	public Optional<Customer> getCustomerById(@PathVariable(value = "id") int customerId) { return customerRepository.findById(customerId); }
-	@GetMapping("CustomersByFirstName/{firstName}")
-	public Optional<Customer> getCustomerByFirstName(@PathVariable(value = "firstName") String firstName) { return customerRepository.getCustomerByFirstName(firstName); }
+	@GetMapping("CustomersByName/{firstName}/{lastName}")
+	public Customer getCustomerByName(@PathVariable(value = "firstName") String firstName, @PathVariable(value = "lastName") String lastName) { return customerRepository.getCustomerByName(firstName, lastName); }
 	@PutMapping("/putCustomer/{id}")
 	public ResponseEntity<Customer> updateCustomer(@PathVariable(value = "id") Integer customerId, @RequestBody Customer customerDetails) {
 		Customer customer = customerRepository.findById(customerId).orElseThrow(() -> new ResourceAccessException("Customer not found for this id :: " + customerId));
@@ -193,6 +194,7 @@ public class SakilaMicroserviceApplication {
 	@PutMapping("/putPayment/{id}")
 	public ResponseEntity<Payment> updatePayment(@PathVariable(value = "id") Integer paymentId, @RequestBody Payment paymentDetails) {
 		Payment payment = paymentRepository.findById(paymentId).orElseThrow(() -> new ResourceAccessException("Payment not found for this id :: " + paymentId));
+		payment.setAmount(paymentDetails.getAmount());
 		final Payment updatedPayment = paymentRepository.save(payment);
 		return ResponseEntity.ok(updatedPayment); }
 	@DeleteMapping("/deletePayment/{paymentId}")
