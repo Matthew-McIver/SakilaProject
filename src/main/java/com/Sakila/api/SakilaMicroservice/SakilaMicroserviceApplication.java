@@ -38,10 +38,10 @@ public class SakilaMicroserviceApplication {
 		return actorRepository.findAll();
 	}
 	@PutMapping("/putActors/{id}")
-	public ResponseEntity<Actor> updateActor(@PathVariable(value = "id") Integer actorId, @RequestBody Actor actorDetails) {
+	public ResponseEntity<Actor> updateActor(@PathVariable(value = "id") Integer actorId, @RequestBody ActorModel actorModelDetails) {
 		Actor actor = actorRepository.findById(actorId).orElseThrow(() -> new ResourceAccessException("Actor not found for this id :: " + actorId));
-		actor.setFirstName(actorDetails.getFirstName());
-		actor.setLastName(actorDetails.getLastName());
+		actor.setFirstName(actorModelDetails.getFirstName());
+		actor.setLastName(actorModelDetails.getLastName());
 		final Actor updatedActor = actorRepository.save(actor);
 		return ResponseEntity.ok(updatedActor); }
 	@DeleteMapping("/deleteActor/{actorId}")
@@ -54,8 +54,9 @@ public class SakilaMicroserviceApplication {
 		response.put("deleted", Boolean.TRUE);
 		return response; }
 	@PostMapping("/putActor")
-	public Actor createActor(@RequestBody Actor actor) {
-		return actorRepository.save(actor);
+	public Actor createActor(@RequestBody ActorModel actorModel) {
+		Actor newActor = new Actor(actorModel.getFirstName(), actorModel.getLastName());
+		return actorRepository.save(newActor);
 	}
 
 	//FILM

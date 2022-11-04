@@ -2,6 +2,7 @@ package com.Sakila.api.SakilaMicroservice;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Set;
+
 @Entity
 @Table(name = "film")
 public class Film {
@@ -17,14 +18,8 @@ public class Film {
             inverseJoinColumns = @JoinColumn(name = "actor_id"))
     Collection<Film> actors;
 
-//    @ManyToOne
-//    @MapsId("inventoryId")
-//    @JoinColumn(name = "inventory_id")
-//    private Inventory inventory;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "inventory_id", referencedColumnName = "inventoryId")
-    private Inventory inventory;
+    @OneToMany(mappedBy = "film")
+    Set<Inventory> inventory;
 
     @Column(name = "title")
     String filmTitle;

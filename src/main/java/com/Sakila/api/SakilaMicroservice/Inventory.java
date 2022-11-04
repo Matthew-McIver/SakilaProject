@@ -13,14 +13,13 @@ public class Inventory {
     @OneToMany(mappedBy = "inventory")
     Set<Rental> rental;
 
-//    @OneToMany(mappedBy = "inventory")
-//    private Set<Film> films;
-
-    @OneToOne(mappedBy = "inventory")
-    private Film film;
+    @ManyToOne
+    @MapsId("filmId")
+    @JoinColumn(name = "film_id")
+    Film film;
 
     //Constructor
-    public Inventory() {}
+    public Inventory() { /*Empty as it has no non-ID columns */ }
 
     //Methods
     public int getInventoryId(){ return inventoryId; }

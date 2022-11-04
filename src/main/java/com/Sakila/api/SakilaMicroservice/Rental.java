@@ -1,6 +1,5 @@
 package com.Sakila.api.SakilaMicroservice;
 import javax.persistence.*;
-import java.util.Set;
 @Entity
 @Table(name = "rental")
 public class Rental {
