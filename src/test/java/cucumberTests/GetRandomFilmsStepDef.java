@@ -1,5 +1,4 @@
 package cucumberTests;
-import com.Sakila.api.SakilaMicroservice.*;
 import com.Sakila.api.sakila.microservice.*;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
