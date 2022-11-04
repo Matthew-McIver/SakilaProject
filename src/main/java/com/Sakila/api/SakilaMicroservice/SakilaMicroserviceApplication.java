@@ -5,6 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.ResourceAccessException;
+
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.*;
 @SpringBootApplication
 @RestController
@@ -70,12 +72,12 @@ public class SakilaMicroserviceApplication {
 	@GetMapping("/filmByName/{id}")
 	public Film getFilmByName(@PathVariable(value = "id") String filmName) { return filmRepository.getFilmByName(filmName); }
 	@PutMapping("/putFilms/{id}")
-	public ResponseEntity<Film> updateFilm(@PathVariable(value = "id") Integer filmId, @RequestBody Film filmDetails) {
+	public ResponseEntity<Film> updateFilm(@PathVariable(value = "id") Integer filmId, @RequestBody FilmModel filmModelDetails) {
 		Film film = filmRepository.findById(filmId).orElseThrow(() -> new ResourceAccessException("Film not found for this id :: " + filmId));
-		film.setFilmTitle(filmDetails.getFilmTitle());
-		film.setFilmDescription(filmDetails.getFilmDescription());
-		film.setReleaseYear(filmDetails.getReleaseYear());
-		film.setAgeRating(filmDetails.getAgeRating());
+		film.setFilmTitle(filmModelDetails.getFilmTitle());
+		film.setFilmDescription(filmModelDetails.getFilmDescription());
+		film.setReleaseYear(filmModelDetails.getFilmYear());
+		film.setAgeRating(filmModelDetails.getFilmRating());
 		final Film updatedFilm = filmRepository.save(film);
 		return ResponseEntity.ok(updatedFilm); }
 	@DeleteMapping("/deleteFilm/{actorId}")
@@ -88,17 +90,18 @@ public class SakilaMicroserviceApplication {
 		response.put("deleted", Boolean.TRUE);
 		return response; }
 	@PostMapping("/putFilm")
-	public Film createFilm(@RequestBody Film film) {
-		return filmRepository.save(film); }
+	public Film createFilm(@RequestBody FilmModel newFilmModel) {
+		Film newFilm = new Film(newFilmModel.getFilmTitle(), newFilmModel.getFilmDescription(), newFilmModel.getFilmYear(), newFilmModel.getFilmRating());
+		return filmRepository.save(newFilm); }
 
 	//RENTAL
 	@GetMapping("/allRentals")
 	public @ResponseBody
 	Iterable<Rental> getAllRentals() { return rentalRepository.findAll(); }
 	@PutMapping("/putRentals/{id}")
-	public ResponseEntity<Rental> updateRental(@PathVariable(value = "id") Integer rentalId, @RequestBody Rental rentalDetails) {
+	public ResponseEntity<Rental> updateRental(@PathVariable(value = "id") Integer rentalId, @RequestBody RentalModel rentalModelDetails) {
 		Rental rental = rentalRepository.findById(rentalId).orElseThrow(() -> new ResourceAccessException("Rental not found for this id :: " + rentalId));
-		rental.setRentalDate(rentalDetails.getRentalDate());
+		rental.setRentalDate(rentalModelDetails.getRentalDate());
 		final Rental updatedRental = rentalRepository.save(rental);
 		return ResponseEntity.ok(updatedRental); }
 	@DeleteMapping("/deleteRental/{rentalId}")
@@ -111,18 +114,20 @@ public class SakilaMicroserviceApplication {
 		response.put("deleted", Boolean.TRUE);
 		return response; }
 	@PostMapping("/putRental")
-	public Rental createRental(@RequestBody Rental rental) { return rentalRepository.save(rental);}
+	public Rental createRental(@RequestBody RentalModel newRentalModel) {
+		Rental newRental = new Rental(newRentalModel.getRentalDate());
+		return rentalRepository.save(newRental);}
 
 	//ADDRESS
 	@GetMapping("/allAddresses")
 	public @ResponseBody
 	Iterable<Address> getAllAddresses() { return addressRepository.findAll(); }
 	@PutMapping("/putAddresses/{id}")
-	public ResponseEntity<Address> updateAddress(@PathVariable(value = "id") Integer addressId, @RequestBody Address addressDetails) {
+	public ResponseEntity<Address> updateAddress(@PathVariable(value = "id") Integer addressId, @RequestBody AddressModel addressModelDetails) {
 		Address address = addressRepository.findById(addressId).orElseThrow(() -> new ResourceAccessException("Address not found for this id :: " + addressId));
-		address.setAddressTitle(addressDetails.getAddressTitle());
-		address.setDistrictTitle(addressDetails.getDistrictTitle());
-		address.setPostalCode(addressDetails.getPostalCode());
+		address.setAddressTitle(addressModelDetails.getAddressTitle());
+		address.setDistrictTitle(addressModelDetails.getDistrictTitle());
+		address.setPostalCode(addressModelDetails.getPostalCode());
 		final Address updatedAddress = addressRepository.save(address);
 		return ResponseEntity.ok(updatedAddress); }
 	@DeleteMapping("/deleteAddress/{addressId}")
@@ -135,7 +140,9 @@ public class SakilaMicroserviceApplication {
 		response.put("deleted", Boolean.TRUE);
 		return response; }
 	@PostMapping("/putAddress")
-	public Address createAddress(@RequestBody Address address) { return addressRepository.save(address); }
+	public Address createAddress(@RequestBody AddressModel newAddressModel) {
+		Address newAddress = new Address(newAddressModel.getAddressTitle(), newAddressModel.getDistrictTitle(), newAddressModel.getPostalCode());
+		return addressRepository.save(newAddress); }
 
 	//CUSTOMER
 	@GetMapping("/allCustomers")
@@ -146,11 +153,11 @@ public class SakilaMicroserviceApplication {
 	@GetMapping("CustomersByName/{firstName}/{lastName}")
 	public Customer getCustomerByName(@PathVariable(value = "firstName") String firstName, @PathVariable(value = "lastName") String lastName) { return customerRepository.getCustomerByName(firstName, lastName); }
 	@PutMapping("/putCustomer/{id}")
-	public ResponseEntity<Customer> updateCustomer(@PathVariable(value = "id") Integer customerId, @RequestBody Customer customerDetails) {
+	public ResponseEntity<Customer> updateCustomer(@PathVariable(value = "id") Integer customerId, @RequestBody CustomerModel customerModelDetails) {
 		Customer customer = customerRepository.findById(customerId).orElseThrow(() -> new ResourceAccessException("Customer not found for this id :: " + customerId));
-		customer.setFirstName(customerDetails.getFirstName());
-		customer.setLastName(customerDetails.getLastName());
-		customer.setEmail(customerDetails.getEmail());
+		customer.setFirstName(customerModelDetails.getFirstName());
+		customer.setLastName(customerModelDetails.getLastName());
+		customer.setEmail(customerModelDetails.getEmailAddress());
 		final Customer updatedCustomer = customerRepository.save(customer);
 		return ResponseEntity.ok(updatedCustomer); }
 	@DeleteMapping("/deleteCustomer/{customerId}")
@@ -163,14 +170,16 @@ public class SakilaMicroserviceApplication {
 		response.put("deleted", Boolean.TRUE);
 		return response; }
 	@PostMapping("/putCustomer")
-	public Customer createCustomer(@RequestBody Customer customer) { return customerRepository.save(customer); }
+	public Customer createCustomer(@RequestBody CustomerModel newCustomerModel) {
+		Customer newCustomer = new Customer(newCustomerModel.getFirstName(), newCustomerModel.getLastName(), newCustomerModel.getEmailAddress());
+		return customerRepository.save(newCustomer); }
 
 	//INVENTORY
 	@GetMapping("/allInventory")
 	public @ResponseBody
 	Iterable<Inventory> getAllInventory() { return inventoryRepository.findAll(); }
 	@PutMapping("/putInventory/{id}")
-	public ResponseEntity<Inventory> updateInventory(@PathVariable(value = "id") Integer inventoryId, @RequestBody Inventory inventoryDetails) {
+	public ResponseEntity<Inventory> updateInventory(@PathVariable(value = "id") Integer inventoryId, @RequestBody InventoryModel inventoryModelDetails) {
 		Inventory inventory = inventoryRepository.findById(inventoryId).orElseThrow(() -> new ResourceAccessException("Inventory not found for this id :: " + inventoryId));
 		final Inventory updatedInventory = inventoryRepository.save(inventory);
 		return ResponseEntity.ok(updatedInventory); }
@@ -184,16 +193,18 @@ public class SakilaMicroserviceApplication {
 		response.put("deleted", Boolean.TRUE);
 		return response; }
 	@PostMapping("/putInventory")
-	public Inventory createInventory(@RequestBody Inventory inventory) { return inventoryRepository.save(inventory); }
+	public Inventory createInventory(@RequestBody InventoryModel newInventoryModel) {
+		Inventory newInventory = new Inventory();
+		return inventoryRepository.save(newInventory); }
 
 	//PAYMENT
 	@GetMapping("/allPayment")
 	public @ResponseBody
 	Iterable<Payment> getAllPayment() { return paymentRepository.findAll(); }
 	@PutMapping("/putPayment/{id}")
-	public ResponseEntity<Payment> updatePayment(@PathVariable(value = "id") Integer paymentId, @RequestBody Payment paymentDetails) {
+	public ResponseEntity<Payment> updatePayment(@PathVariable(value = "id") Integer paymentId, @RequestBody PaymentModel paymentModelDetails) {
 		Payment payment = paymentRepository.findById(paymentId).orElseThrow(() -> new ResourceAccessException("Payment not found for this id :: " + paymentId));
-		payment.setAmount(paymentDetails.getAmount());
+		payment.setAmount(paymentModelDetails.getPaymentAmount());
 		final Payment updatedPayment = paymentRepository.save(payment);
 		return ResponseEntity.ok(updatedPayment); }
 	@DeleteMapping("/deletePayment/{paymentId}")
@@ -206,4 +217,6 @@ public class SakilaMicroserviceApplication {
 		response.put("deleted", Boolean.TRUE);
 		return response; }
 	@PostMapping("/putPayment")
-	public Payment createPayment(@RequestBody Payment payment) { return paymentRepository.save(payment); } }
+	public Payment createPayment(@RequestBody PaymentModel newPaymentModel) {
+		Payment newPayment = new Payment(newPaymentModel.getPaymentAmount());
+		return paymentRepository.save(newPayment); } }
