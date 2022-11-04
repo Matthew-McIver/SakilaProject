@@ -1,11 +1,11 @@
 package com.Sakila.api.SakilaMicroservice;
 
 public class PaymentModel {
-    private int paymentAmount;
+    private double paymentAmount;
 
-    public PaymentModel(int pAmount){
+    public PaymentModel(double pAmount){
         this.paymentAmount = pAmount;
     }
 
-    public int getPaymentAmount(){ return paymentAmount; }
+    public double getPaymentAmount(){ return paymentAmount; }
 }
