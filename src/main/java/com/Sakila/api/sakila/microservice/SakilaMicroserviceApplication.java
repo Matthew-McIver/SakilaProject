@@ -151,6 +151,8 @@ public class SakilaMicroserviceApplication {
 	public Optional<Customer> getCustomerById(@PathVariable(value = "id") int customerId) { return customerRepository.findById(customerId); }
 	@GetMapping("CustomersByName/{firstName}/{lastName}")
 	public Customer getCustomerByName(@PathVariable(value = "firstName") String firstName, @PathVariable(value = "lastName") String lastName) { return customerRepository.getCustomerByName(firstName, lastName); }
+	@GetMapping("CustomersByEmail/{email}")
+	public Customer getCustomerByEmail(@PathVariable(value = "email") String email) { return customerRepository.getCustomerByEmail(email); }
 	@PutMapping("/putCustomer/{id}")
 	public ResponseEntity<Customer> updateCustomer(@PathVariable(value = "id") Integer customerId, @RequestBody CustomerModel customerModelDetails) {
 		Customer customer = customerRepository.findById(customerId).orElseThrow(() -> new ResourceAccessException("Customer not found for this id :: " + customerId));
