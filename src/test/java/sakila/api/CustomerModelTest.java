@@ -3,7 +3,7 @@ package sakila.api;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class CustomerModelTest {
+class CustomerModelTest {
     CustomerModel testCustomer = new CustomerModel("Matthew", "McIver", "MatthewMcIver@gmail.com");
     @Test
     void testCustomerFirstName(){
