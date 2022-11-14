@@ -1,4 +1,4 @@
-package com.Sakila.api.sakila.microservice;
+package sakila.api;
 import javax.persistence.*;
 @Entity
 @Table(name = "payment")

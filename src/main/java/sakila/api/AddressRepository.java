@@ -1,3 +1,3 @@
-package com.Sakila.api.sakila.microservice;
+package sakila.api;
 import org.springframework.data.jpa.repository.JpaRepository;
 public interface AddressRepository extends JpaRepository<Address, Integer> {}

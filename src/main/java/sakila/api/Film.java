@@ -1,4 +1,4 @@
-package com.Sakila.api.sakila.microservice;
+package sakila.api;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Set;

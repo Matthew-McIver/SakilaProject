@@ -1,4 +1,4 @@
-package com.Sakila.api.sakila.microservice;
+package sakila.api;
 
 public class FilmModel {
     private String filmTitle;

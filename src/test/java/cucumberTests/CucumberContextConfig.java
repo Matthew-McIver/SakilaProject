@@ -1,6 +1,6 @@
 package cucumberTests;
 
-import com.Sakila.api.sakila.microservice.SakilaMicroserviceApplication;
+import sakila.api.SakilaMicroserviceApplication;
 import io.cucumber.spring.CucumberContextConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 
