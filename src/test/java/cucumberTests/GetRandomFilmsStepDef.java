@@ -1,6 +1,5 @@
 package cucumberTests;
 import com.Sakila.api.sakila.microservice.*;
-import com.akila.api.sakila.microservice.*;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
