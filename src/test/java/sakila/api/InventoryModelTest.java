@@ -1,4 +1,4 @@
-package com.Sakila.api.sakila.microservice;
+package sakila.api;
 
 public class InventoryModelTest {
     InventoryModel testInventoryModel = new InventoryModel();

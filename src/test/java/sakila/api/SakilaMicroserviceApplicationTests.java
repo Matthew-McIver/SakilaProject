@@ -1,4 +1,4 @@
-package com.Sakila.api.sakila.microservice;
+package sakila.api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
