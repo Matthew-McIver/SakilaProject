@@ -31,7 +31,7 @@ public class SakilaMicroserviceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SakilaMicroserviceApplication.class, args);
 	}
-
+	String delete = "deleted";
 	//ACTOR
 	@GetMapping("/allActors")
 	public @ResponseBody
@@ -52,7 +52,7 @@ public class SakilaMicroserviceApplication {
 				.orElseThrow(() -> new ResourceAccessException("Actor not found for this id :: " + actorTimeId));
 		actorRepository.deleteById(actorTimeId);
 		Map<String, Boolean> response = new HashMap<>();
-		response.put("deleted", Boolean.TRUE);
+		response.put(delete, Boolean.TRUE);
 		return response; }
 	@PostMapping("/putActor")
 	public Actor createActor(@RequestBody ActorModel actorModel) {
@@ -86,7 +86,7 @@ public class SakilaMicroserviceApplication {
 				.orElseThrow(() -> new ResourceAccessException("Film not found for this id :: " + filmTimeId));
 		actorRepository.deleteById(filmTimeId);
 		Map<String, Boolean> response = new HashMap<>();
-		response.put("deleted", Boolean.TRUE);
+		response.put(delete, Boolean.TRUE);
 		return response; }
 	@PostMapping("/putFilm")
 	public Film createFilm(@RequestBody FilmModel newFilmModel) {
@@ -110,7 +110,7 @@ public class SakilaMicroserviceApplication {
 				.orElseThrow(() -> new ResourceAccessException("Rental not found for this id :: " + rentalTimeId));
 		rentalRepository.deleteById(rentalTimeId);
 		Map<String, Boolean> response = new HashMap<>();
-		response.put("deleted", Boolean.TRUE);
+		response.put(delete, Boolean.TRUE);
 		return response; }
 	@PostMapping("/putRental")
 	public Rental createRental(@RequestBody RentalModel newRentalModel) {
@@ -136,7 +136,7 @@ public class SakilaMicroserviceApplication {
 				.orElseThrow(() -> new ResourceAccessException("Address not found for this id :: " + addressTimeId));
 		addressRepository.deleteById(addressTimeId);
 		Map<String, Boolean> response = new HashMap<>();
-		response.put("deleted", Boolean.TRUE);
+		response.put(delete, Boolean.TRUE);
 		return response; }
 	@PostMapping("/putAddress")
 	public Address createAddress(@RequestBody AddressModel newAddressModel) {
@@ -168,7 +168,7 @@ public class SakilaMicroserviceApplication {
 				.orElseThrow(() -> new ResourceAccessException("Customer not found for this id :: " + customerTimeId));
 		customerRepository.deleteById(customerTimeId);
 		Map<String, Boolean> response = new HashMap<>();
-		response.put("deleted", Boolean.TRUE);
+		response.put(delete, Boolean.TRUE);
 		return response; }
 	@PostMapping("/putCustomer")
 	public Customer createCustomer(@RequestBody CustomerModel newCustomerModel) {
@@ -191,7 +191,7 @@ public class SakilaMicroserviceApplication {
 				.orElseThrow(() -> new ResourceAccessException("Inventory not found for this id :: " + inventoryTimeId));
 		inventoryRepository.deleteById(inventoryTimeId);
 		Map<String, Boolean> response = new HashMap<>();
-		response.put("deleted", Boolean.TRUE);
+		response.put(delete, Boolean.TRUE);
 		return response; }
 	@PostMapping("/putInventory")
 	public Inventory createInventory(@RequestBody InventoryModel newInventoryModel) {
@@ -215,7 +215,7 @@ public class SakilaMicroserviceApplication {
 				.orElseThrow(() -> new ResourceAccessException("Payment not found for this id :: " + paymentTimeId));
 		paymentRepository.deleteById(paymentTimeId);
 		Map<String, Boolean> response = new HashMap<>();
-		response.put("deleted", Boolean.TRUE);
+		response.put(delete, Boolean.TRUE);
 		return response; }
 	@PostMapping("/putPayment")
 	public Payment createPayment(@RequestBody PaymentModel newPaymentModel) {
