@@ -1,5 +1,5 @@
 package sakila.api;
 
-public class InventoryModelTest {
+class InventoryModelTest {
     InventoryModel testInventoryModel = new InventoryModel();
 }
