@@ -9,18 +9,9 @@ public class Rental {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int rentalId;
 
-//    @ManyToOne
-//    @MapsId("customerId")
-//    @JoinColumn(name = "customer_id")
-//    Customer customer;
-
     @ManyToOne
     @JoinColumn(name = "inventory_id")
     Inventory inventory;
-
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "payment_id", referencedColumnName = "paymentId")
-//    private Payment payment;
 
     @Column(name = "rental_date")
     int rentalDate;
