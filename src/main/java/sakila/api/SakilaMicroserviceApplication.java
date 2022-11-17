@@ -140,7 +140,7 @@ public class SakilaMicroserviceApplication {
 		return response; }
 	@PostMapping("/putAddress")
 	public Address createAddress(@RequestBody AddressModel newAddressModel) {
-		Address newAddress = new Address(newAddressModel.getAddressTitle(), newAddressModel.getDistrictTitle(), newAddressModel.getPostalCode());
+		Address newAddress = new Address(newAddressModel.getAddressTitle(), newAddressModel.getDistrictTitle(), newAddressModel.getPostalCode(), newAddressModel.getPhoneNumber());
 		return addressRepository.save(newAddress); }
 
 	//CUSTOMER
@@ -172,7 +172,9 @@ public class SakilaMicroserviceApplication {
 		return response; }
 	@PostMapping("/putCustomer")
 	public Customer createCustomer(@RequestBody CustomerModel newCustomerModel) {
-		Customer newCustomer = new Customer(newCustomerModel.getFirstName(), newCustomerModel.getLastName(), newCustomerModel.getEmailAddress());
+		Address newAddress = new Address(newCustomerModel.getAddressTitle(), newCustomerModel.getDistrictTitle(), newCustomerModel.getPostalCode(), newCustomerModel.getPhoneNumber());
+		Address output = addressRepository.save(newAddress);
+		Customer newCustomer = new Customer(newCustomerModel.getFirstName(), newCustomerModel.getLastName(), newCustomerModel.getEmailAddress(), output.getAddressId(), output);
 		return customerRepository.save(newCustomer); }
 
 	//INVENTORY

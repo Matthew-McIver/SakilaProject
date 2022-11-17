@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 class AddressTest {
     Address testAddress = new Address();
 
-    Address newAddress = new Address("123 1st Street", "Liverpool", 12345);
+    Address newAddress = new Address("123 1st Street", "Liverpool", 12345, "12345");
 
     @Test
     void testAddressId(){

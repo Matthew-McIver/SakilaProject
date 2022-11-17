@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class AddressModelTest {
-    AddressModel testAddress = new AddressModel("123 1st Street", "New York", 12345);
+    AddressModel testAddress = new AddressModel("123 1st Street", "New York", 12345, "12345");
     @Test
     void testAddressTitle(){
         Assertions.assertEquals("123 1st Street", testAddress.getAddressTitle(), "Getter for address title is incorrect."); }

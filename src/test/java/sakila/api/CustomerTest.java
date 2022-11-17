@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 class CustomerTest {
     Customer testCustomer = new Customer();
 
-    Customer newCustomer = new Customer("Matthew", "McIver", "matthewpetermciver@gmail.com");
+    Customer newCustomer = new Customer("Matthew", "McIver", "matthewpetermciver@gmail.com", 1, new Address());
 
     @Test
     void testCustomerId(){

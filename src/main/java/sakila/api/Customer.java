@@ -15,11 +15,17 @@ public class Customer {
     @JoinColumn(name = "address_id")
     Address address;
 
-    @OneToMany(mappedBy = "customer")
-    Set<Rental> rental;
+//    @OneToMany(mappedBy = "customer")
+//    Set<Rental> rental;
 
     @Column(name = "first_name")
     String firstName;
+
+    @Column(name = "store_id")
+    int storeId;
+
+    @Column(name = "address_id")
+    int addressId;
 
     @Column(name = "last_name")
     String lastName;
@@ -28,10 +34,13 @@ public class Customer {
     String email;
 
     //Constructor
-    public Customer(String myFirstName, String myLastName, String myEmail) {
+    public Customer(String myFirstName, String myLastName, String myEmail, int myAddressId, Address address) {
         this.firstName = myFirstName;
         this.lastName = myLastName;
-        this.email = myEmail; }
+        this.email = myEmail;
+        this.storeId = 1;
+        this.addressId = myAddressId;
+        this.address = address; }
 
     public Customer() {}
 
@@ -46,4 +55,7 @@ public class Customer {
     public void setLastName(String myLastName) { lastName = myLastName; }
 
     public String getEmail() { return email; }
-    public void setEmail(String myEmail) { email = myEmail; } }
+    public void setEmail(String myEmail) { email = myEmail; }
+
+    public Address getAddress() { return address; }
+    public void setAddress(Address myAddress) { address = myAddress; } }

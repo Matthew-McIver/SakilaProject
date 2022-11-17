@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class CustomerModelTest {
-    CustomerModel testCustomer = new CustomerModel("Matthew", "McIver", "MatthewMcIver@gmail.com");
+    CustomerModel testCustomer = new CustomerModel("Matthew", "McIver", "MatthewMcIver@gmail.com", 1, "1","1", "1", 2);
     @Test
     void testCustomerFirstName(){
         Assertions.assertEquals("Matthew", testCustomer.getFirstName(), "Getter for customer first name is incorrect."); }

@@ -19,14 +19,22 @@ public class Address {
     @Column(name = "district")
     String districtTitle;
 
+    @Column(name = "phone")
+    String phoneNumber;
+
     @Column(name = "postal_code")
     int postalCode;
 
+    @Column(name = "city_id")
+    int cityId;
+
     //Constructor
-    public Address(String myAddress, String myDistrict, int myPostalCode) {
+    public Address(String myAddress, String myDistrict, int myPostalCode, String myPhoneNumber) {
         this.addressTitle = myAddress;
         this.districtTitle = myDistrict;
-        this.postalCode = myPostalCode; }
+        this.postalCode = myPostalCode;
+        this.phoneNumber = myPhoneNumber;
+        this.cityId = 1; }
 
     public Address() {}
 
@@ -41,4 +49,13 @@ public class Address {
     public void setDistrictTitle(String myDistrictTitle) { districtTitle = myDistrictTitle; }
 
     public int getPostalCode() { return postalCode; }
-    public void setPostalCode(int myPostCode) { postalCode = myPostCode; } }
+    public void setPostalCode(int myPostCode) { postalCode = myPostCode; }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+}
