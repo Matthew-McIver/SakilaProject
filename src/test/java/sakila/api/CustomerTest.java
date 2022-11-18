@@ -31,4 +31,10 @@ class CustomerTest {
         testCustomer.setEmail("matthewpetermciver@gmail.com");
         Assertions.assertEquals("matthewpetermciver@gmail.com", testCustomer.getEmail(), "Setter and/or getter for customer emails is incorrect.");
     }
+
+//    @Test
+//    void setTestCustomerAddress(){
+//        testCustomer.setAddress(new Address("1st street", "New York", 12345, "12345"));
+//        Assertions.assertEquals(new Address("1st street", "New York", 12345, "12345"), testCustomer.getAddress(), "Setter and/or getter for customer address is incorrect.");
+//    }
 }

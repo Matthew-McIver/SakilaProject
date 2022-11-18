@@ -19,13 +19,7 @@ public class SearchFilmByNameStepDef {
     @Autowired
     FilmRepository filmRepository;
     @Autowired
-    InventoryRepository inventoryRepository;
-    @Autowired
-    PaymentRepository paymentRepository;
-    @Autowired
-    RentalRepository rentalRepository;
-    @Autowired
-    SakilaMicroserviceApplication sakilaMicroserviceApplication = new SakilaMicroserviceApplication(actorRepository, filmRepository, rentalRepository, addressRepository, customerRepository, inventoryRepository, paymentRepository);
+    SakilaMicroserviceApplication sakilaMicroserviceApplication = new SakilaMicroserviceApplication(actorRepository, filmRepository, addressRepository, customerRepository);
     @Given("the customer wants to find a certain film")
     public void the_customer_wants_to_find_a_certain_film() {
         filmTitle = "PSYCHO SHRUNK";

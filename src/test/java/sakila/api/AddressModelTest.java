@@ -13,4 +13,9 @@ class AddressModelTest {
         Assertions.assertEquals("New York", testAddress.getDistrictTitle(), "Getter for address district is incorrect."); }
     @Test
     void testAddressPostCode(){
-        Assertions.assertEquals(12345, testAddress.getPostalCode(), "Getter for address postal code is incorrect."); } }
+        Assertions.assertEquals(12345, testAddress.getPostalCode(), "Getter for address postal code is incorrect."); }
+
+    @Test
+    void testAddressPhoneNumber(){
+        Assertions.assertEquals("12345", testAddress.getPhoneNumber(), "Getter for address phone number is incorrect.");
+    }}

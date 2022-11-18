@@ -23,13 +23,7 @@ public class GetRandomFilmsStepDef {
     @Autowired
     FilmRepository filmRepository;
     @Autowired
-    InventoryRepository inventoryRepository;
-    @Autowired
-    PaymentRepository paymentRepository;
-    @Autowired
-    RentalRepository rentalRepository;
-    @Autowired
-    SakilaMicroserviceApplication sakilaMicroserviceApplication = new SakilaMicroserviceApplication(actorRepository, filmRepository, rentalRepository, addressRepository, customerRepository, inventoryRepository, paymentRepository);
+    SakilaMicroserviceApplication sakilaMicroserviceApplication = new SakilaMicroserviceApplication(actorRepository, filmRepository, addressRepository, customerRepository);
     @Given("a user wants to see their most recently rented films")
     public void a_user_wants_to_see_their_most_recently_rented_films() {
         noOfFilms = 10;

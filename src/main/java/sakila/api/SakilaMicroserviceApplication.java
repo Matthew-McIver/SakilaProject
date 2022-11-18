@@ -15,19 +15,13 @@ public class SakilaMicroserviceApplication {
 	@Autowired
 	private ActorRepository actorRepository;
 	private FilmRepository filmRepository;
-	private RentalRepository rentalRepository;
 	private AddressRepository addressRepository;
 	private CustomerRepository customerRepository;
-	private InventoryRepository inventoryRepository;
-	private PaymentRepository paymentRepository;
-	public SakilaMicroserviceApplication(ActorRepository myActorRepo, FilmRepository myFilmRepo, RentalRepository myRentalRepo, AddressRepository myAddressRepo, CustomerRepository myCustomerRepo, InventoryRepository myInventoryRepo, PaymentRepository myPaymentRepo) {
+	public SakilaMicroserviceApplication(ActorRepository myActorRepo, FilmRepository myFilmRepo, AddressRepository myAddressRepo, CustomerRepository myCustomerRepo) {
 		this.actorRepository = myActorRepo;
 		this.filmRepository = myFilmRepo;
-		this.rentalRepository = myRentalRepo;
 		this.addressRepository = myAddressRepo;
-		this.customerRepository = myCustomerRepo;
-		this.inventoryRepository = myInventoryRepo;
-		this.paymentRepository = myPaymentRepo; }
+		this.customerRepository = myCustomerRepo; }
 	public static void main(String[] args) {
 		SpringApplication.run(SakilaMicroserviceApplication.class, args);
 	}

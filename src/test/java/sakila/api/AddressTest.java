@@ -31,5 +31,11 @@ class AddressTest {
         testAddress.setPostalCode(12345);
         Assertions.assertEquals(12345, testAddress.getPostalCode(), "Getter and/or setter for postal codes is incorrect.");
     }
+
+    @Test
+    void testPhoneNumber(){
+        testAddress.setPhoneNumber("12345");
+        Assertions.assertEquals("12345", testAddress.getPhoneNumber(), "Geter and/or setter for phone numbers is incorrect.");
+    }
 }
 
